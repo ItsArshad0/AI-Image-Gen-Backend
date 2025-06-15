@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Image Generation UI</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f8f8f8; }
+        .container { max-width: 900px; margin: auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 2px 8px #ccc; }
+        .section { margin-bottom: 30px; }
+        .section-title { font-size: 1.2em; margin-bottom: 10px; font-weight: bold; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; }
+        input[type="text"], textarea { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+        button { padding: 10px 20px; border: none; background: #007bff; color: #fff; border-radius: 4px; cursor: pointer; }
+        button:disabled { background: #aaa; }
+        .output-images { display: flex; gap: 20px; justify-content: space-between; }
+        .output-images img { width: 200px; height: 200px; object-fit: cover; border: 1px solid #ccc; border-radius: 6px; background: #eee; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Input Section -->
+        <div class="section" id="input-section">
+            <div class="section-title">Input</div>
+            <div class="input-group">
+                <label for="prompt">Prompt:</label>
+                <input type="text" id="prompt" placeholder="Enter your main prompt">
+            </div>
+            <div class="input-group">
+                <label for="negative-prompt">Negative Prompt:</label>
+                <input type="text" id="negative-prompt" placeholder="Enter negative prompt (optional)">
+            </div>
+            <div class="input-group">
+                <label for="inpaint-prompt">Inpaint Prompt:</label>
+                <input type="text" id="inpaint-prompt" placeholder="Enter inpaint prompt (optional)">
+            </div>
+            <button id="generate-btn" onclick="generateImages()">Generate Images</button>
+        </div>
+
+        <!-- Output Section -->
+        <div class="section" id="output-section">
+            <div class="section-title">Output</div>
+            <div class="output-images" id="output-images">
+                <img id="img1" src="outputs/generated_image.png" alt="Generated Image">
+                <img id="img2" src="outputs/sam_segmentation.png" alt="SAM Segmentation">
+                <img id="img3" src="outputs/inpainted_image.png" alt="Inpainted Image">
+                <img id="img4" src="outputs/semantic_mask.png" alt="Semantic Mask">
+            </div>
+        </div>
+    </div>
+    <script>
+        function generateImages() {
+            const prompt = document.getElementById('prompt').value;
+            const negativePrompt = document.getElementById('negative-prompt').value;
+            const inpaintPrompt = document.getElementById('inpaint-prompt').value;
+
+            document.getElementById('generate-btn').disabled = true;
+
+            fetch('http://localhost:5000/generate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    prompt: prompt,
+                    negative_prompt: negativePrompt,
+                    inpaint_prompt: inpaintPrompt
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('img1').src = data.generated_image + '?' + new Date().getTime();
+                document.getElementById('img2').src = data.sam_segmentation + '?' + new Date().getTime();
+                document.getElementById('img3').src = data.inpainted_image + '?' + new Date().getTime();
+                document.getElementById('img4').src = data.semantic_mask + '?' + new Date().getTime();
+                document.getElementById('generate-btn').disabled = false;
+            })
+            .catch(err => {
+                alert('Error: ' + err);
+                document.getElementById('generate-btn').disabled = false;
+            });
+        }
+    </script>
+</body>
+</html>
