@@ -21,7 +21,10 @@ A multimodal pipeline for generative AI image creation, region-based editing, an
 
 Install dependencies:
 ```bash
-pip install torch torchvision diffusers segment-anything matplotlib pillow requests
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+
 ```
 
 ---
@@ -60,6 +63,7 @@ pip install torch torchvision diffusers segment-anything matplotlib pillow reque
 - [Stable Diffusion (Hugging Face)](https://huggingface.co/CompVis/stable-diffusion-v1-4)
 - [Stable Diffusion Inpainting (Hugging Face)](https://huggingface.co/stabilityai/stable-diffusion-2-inpainting)
 - [Segment Anything (Meta AI)](https://github.com/facebookresearch/segment-anything)
+- https://huggingface.co/HCMUE-Research/SAM-vit-h/blob/main/sam_vit_h_4b8939.pth&ved=2ahUKEwiNnJjl-fKNAxWn1DgGHc5RCQMQFnoECAkQAQ&usg=AOvVaw2HDPrdVCaTaoOVanY7WKxU(Path File Download)
 - [DeepLabV3 (torchvision)](https://pytorch.org/vision/stable/models/generated/torchvision.models.segmentation.deeplabv3_resnet101.html)
 
 ---
