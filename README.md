@@ -65,6 +65,7 @@ pip install -r requirements.txt
 - [Segment Anything (Meta AI)](https://github.com/facebookresearch/segment-anything)
 - https://huggingface.co/HCMUE-Research/SAM-vit-h/blob/main/sam_vit_h_4b8939.pth&ved=2ahUKEwiNnJjl-fKNAxWn1DgGHc5RCQMQFnoECAkQAQ&usg=AOvVaw2HDPrdVCaTaoOVanY7WKxU(Path File Download)
 - [DeepLabV3 (torchvision)](https://pytorch.org/vision/stable/models/generated/torchvision.models.segmentation.deeplabv3_resnet101.html)
+- https://github.com/IDEA-Research/Grounded-Segment-Anything
 
 ---
 
