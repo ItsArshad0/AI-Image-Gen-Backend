@@ -1,0 +1,51 @@
+# Core Python libraries
+numpy>=1.23.0
+Pillow>=9.0.0
+opencv-python>=4.7.0.72
+matplotlib>=3.5.0
+scikit-image>=0.20.0
+scipy>=1.10.0
+tqdm>=4.64.0
+
+# Deep learning frameworks
+torch>=2.0.0
+torchvision>=0.15.0
+torchaudio>=2.0.0
+
+# HuggingFace + Diffusers (for Stable Diffusion + LoRA)
+transformers>=4.30.0
+diffusers>=0.20.0
+safetensors>=0.3.0
+accelerate>=0.20.3
+
+# Segment Anything (SAM)
+git+https://github.com/facebookresearch/segment-anything.git
+
+# GroundingDINO
+git+https://github.com/IDEA-Research/GroundingDINO.git
+
+# OpenCV & visualization
+imageio>=2.31.0
+imageio-ffmpeg>=0.4.8
+
+# COCO / dataset utilities
+pycocotools>=2.0.6
+
+# Optional CLI helpers
+click>=8.1.3
+
+# For bounding box overlays and interaction
+opencv-contrib-python>=4.7.0.72
+
+# Jupyter notebook support (optional)
+ipykernel
+jupyterlab
+
+# For file management and YAML configs
+PyYAML>=6.0
+
+# For SAM visualization and overlays
+seaborn>=0.12.2
+
+# For interactive segmentation if needed
+gradio>=3.36.0
